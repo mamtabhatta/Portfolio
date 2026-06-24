@@ -1,3 +1,54 @@
+import {
+    FaHtml5,
+    FaCss3Alt,
+    FaJs,
+    FaReact,
+    FaNodeJs,
+    FaGitAlt,
+    FaGithub,
+} from "react-icons/fa";
+import {
+    SiExpress,
+    SiMongodb,
+    SiMysql,
+    SiPostman,
+} from "react-icons/si";
+import { VscCode } from "react-icons/vsc";
+
+const skillGroups = [
+    {
+        title: "Frontend",
+        skills: [
+            { name: "HTML", icon: <FaHtml5 /> },
+            { name: "CSS", icon: <FaCss3Alt /> },
+            { name: "JavaScript", icon: <FaJs /> },
+            { name: "React", icon: <FaReact /> },
+        ],
+    },
+    {
+        title: "Backend",
+        skills: [
+            { name: "Node.js", icon: <FaNodeJs /> },
+            { name: "Express.js", icon: <SiExpress /> },
+        ],
+    },
+    {
+        title: "Database",
+        skills: [
+            { name: "MongoDB", icon: <SiMongodb /> },
+            { name: "MySQL", icon: <SiMysql /> },
+        ],
+    },
+    {
+        title: "Tools",
+        skills: [
+            { name: "Git", icon: <FaGitAlt /> },
+            { name: "GitHub", icon: <FaGithub /> },
+            { name: "Postman", icon: <SiPostman /> },
+        ],
+    },
+];
+
 function Skills() {
     return (
         <section id="skills">
@@ -7,29 +58,23 @@ function Skills() {
                 <div className="section-divider"></div>
 
                 <div className="skills-grid">
-                    <SkillGroup title="Frontend" skills={["HTML", "CSS", "JavaScript", "React"]} />
-                    <SkillGroup title="Backend" skills={["Node.js", "Express.js"]} />
-                    <SkillGroup title="Database" skills={["MongoDB", "MySQL"]} />
-                    <SkillGroup title="Tools" skills={["Git", "GitHub", "VS Code", "Postman"]} />
+                    {skillGroups.map((group) => (
+                        <div className="skill-group" key={group.title}>
+                            <h3 className="skill-group-title">{group.title}</h3>
+
+                            <div className="skill-tags">
+                                {group.skills.map((skill) => (
+                                    <div className="skill-tag" key={skill.name}>
+                                        <span className="skill-icon">{skill.icon}</span>
+                                        <span>{skill.name}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
-    );
-}
-
-function SkillGroup({ title, skills }) {
-    return (
-        <div className="skill-group">
-            <div className="skill-group-title">{title}</div>
-
-            <div className="skill-tags">
-                {skills.map((skill) => (
-                    <span className="skill-tag" key={skill}>
-                        {skill}
-                    </span>
-                ))}
-            </div>
-        </div>
     );
 }
 
